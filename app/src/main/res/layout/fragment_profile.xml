@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- 使用者卡片 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center_horizontal">
+
+                <!-- 使用者名稱 -->
+                <TextView
+                    android:id="@+id/textUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="使用者名稱"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp"/>
+
+                <!-- 身份標籤 -->
+                <TextView
+                    android:id="@+id/textUserRole"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份"
+                    android:textSize="16sp"
+                    android:textColor="#666666" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 我的發布按鈕 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonMyPosts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="我的發布"
+            style="@style/Widget.MaterialComponents.Button"
+            android:icon="@drawable/ic_baseline_article_24"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- 登出按鈕 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="登出"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:icon="@drawable/ic_baseline_logout_24"
+            app:iconPadding="8dp"
+            app:iconTint="@color/black" />
+
+    </LinearLayout>
+</ScrollView>

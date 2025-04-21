@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="👨‍🎓 張同學"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <!-- 教授科目 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="教授科目（*必填）"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/edtSubjects"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:padding="12dp"
+            android:text="尚未選擇"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 薪資 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="薪資（*必填，元/小時）"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edtSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="輸入薪資"
+            android:inputType="number"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/edtSalaryNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="補充說明（如：可議價）"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 教學時間 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可輔導時間（*必填）"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/edtDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:padding="12dp"
+            android:text="尚未選擇"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/textStartTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:padding="12dp"
+            android:text="選擇開始時間"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/textEndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:padding="12dp"
+            android:text="選擇結束時間"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 自我介紹 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自我介紹（選填）"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edtIntro"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:background="#EFEFEF"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- 儲存修改 -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="儲存修改"
+            android:backgroundTint="#6A5ACD"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TutorApp2</string>
+    <string name="radio_do">做家教</string>
+    <string name="radio_find">招家教</string>
+</resources>

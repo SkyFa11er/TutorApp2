@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="?android:attr/dividerHorizontal"
+        android:showDividers="middle"
+        android:dividerPadding="8dp">
+
+        <!-- 📚 教授科目 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📚 教授科目（*必填）"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSelectSubjects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選擇科目" />
+
+        <TextView
+            android:id="@+id/selectedSubjectsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尚未選擇"
+            android:paddingBottom="8dp" />
+
+        <!-- 💰 薪資 -->
+        <EditText
+            android:id="@+id/editSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="薪資（元 / 小時）*必填"
+            android:inputType="number" />
+
+        <!-- 💬 薪資備註 -->
+        <EditText
+            android:id="@+id/editSalaryNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="薪資備註（可填）" />
+
+        <!-- ✍️ 自我介紹 -->
+        <EditText
+            android:id="@+id/editIntro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="自我介紹 *必填"
+            android:minLines="4"
+            android:gravity="top" />
+
+        <!-- 📅 可教學日 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📅 可教學日（*必填）"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp" />
+
+        <Button
+            android:id="@+id/btnSelectDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選擇可教學日" />
+
+        <TextView
+            android:id="@+id/selectedDaysText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尚未選擇" />
+
+        <!-- 🕒 起始時間 -->
+        <Button
+            android:id="@+id/btnStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選擇起始時間"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/startTimeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尚未設定" />
+
+        <!-- 🕓 結束時間 -->
+        <Button
+            android:id="@+id/btnEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選擇結束時間"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/endTimeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尚未設定" />
+
+        <!-- ✅ 發布按鈕 -->
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="發布"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="?android:attr/dividerHorizontal"
+        android:showDividers="middle"
+        android:dividerPadding="8dp">
+
+        <!-- 🎓 學員名稱 -->
+        <EditText
+            android:id="@+id/editChildName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="學員名稱 *必填" />
+
+        <!-- 📞 聯絡電話 -->
+        <EditText
+            android:id="@+id/editPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="聯絡電話 *必填"
+            android:inputType="phone" />
+
+        <!-- 📍 地區 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="選擇地區 *必填"
+            android:textStyle="bold"
+            android:paddingTop="8dp" />
+
+        <Spinner
+            android:id="@+id/spinnerDistrict"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- 🏠 詳細地址（必填） -->
+        <EditText
+            android:id="@+id/editAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="詳細地址（必填，不展示）" />
+
+        <!-- 📘 科目需求 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📘 科目需求（*必填）"
+            android:textStyle="bold"
+            android:paddingTop="8dp" />
+
+        <Button
+            android:id="@+id/btnSelectSubjects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選擇科目" />
+
+        <TextView
+            android:id="@+id/selectedSubjectsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尚未選擇" />
+
+        <!-- 💰 薪資 -->
+        <EditText
+            android:id="@+id/editSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="薪資（元 / 小時）*必填"
+            android:inputType="number" />
+
+        <!-- 🗓️ 輔導時間 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🗓️ 輔導時間（*必填）"
+            android:textStyle="bold"
+            android:paddingTop="8dp" />
+
+        <Button
+            android:id="@+id/btnSelectDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選擇時間" />
+
+        <TextView
+            android:id="@+id/selectedDaysText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尚未選擇" />
+
+        <!-- 📝 補充需求說明 -->
+        <EditText
+            android:id="@+id/editNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="家教內容說明（可填）"
+            android:minLines="3"
+            android:gravity="top" />
+
+        <!-- ✅ 發布按鈕 -->
+        <Button
+            android:id="@+id/btnSubmitFind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="發布招家教"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>

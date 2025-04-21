@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- 學生姓名（顯示） -->
+        <TextView
+            android:id="@+id/textChildName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="👧 學員姓名"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+
+        <!-- 科目 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="教授科目（*必填）"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/edtSubjects"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="例：初中數學,初中英語"
+            android:padding="12dp"
+            android:background="#EEEEEE"
+            android:focusable="false"
+            android:clickable="true"
+            android:textColorHint="#999999"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 薪資 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="薪資（*必填，元/小時）"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+        <EditText
+            android:id="@+id/edtSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="例：250"
+            android:inputType="number"
+            android:backgroundTint="#CCCCCC"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 可輔導時間 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可輔導時間（*必填）"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/edtDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="例：星期一,星期三"
+            android:padding="12dp"
+            android:background="#EEEEEE"
+            android:focusable="false"
+            android:clickable="true"
+            android:textColorHint="#999999"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 備註 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="額外備註（可選填）"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+        <EditText
+            android:id="@+id/edtNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="例：希望家教能協助完成作業"
+            android:minLines="3"
+            android:gravity="top"
+            android:backgroundTint="#CCCCCC"
+            android:layout_marginBottom="24dp" />
+
+        <!-- 儲存按鈕 -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="儲存修改"
+            android:backgroundTint="#6A4DCF"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="40dp" />
+    </LinearLayout>
+</ScrollView>

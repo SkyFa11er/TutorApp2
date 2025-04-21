@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 加入 Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:title="家教幫"
+        android:titleTextColor="@android:color/white" />
+
+    <!-- 篩選切換 -->
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/radioDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_do" />
+
+        <RadioButton
+            android:id="@+id/radioFind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_find"
+            android:layout_marginStart="24dp" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/btnGoTutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="➕ 發布做家教資訊"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="@android:color/white" />
+    <Button
+        android:id="@+id/btnGoFindTutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="➕ 發布招家教資訊"
+        android:layout_marginTop="12dp"
+        android:visibility="gone"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="@android:color/white" />
+
+
+
+    <!-- 家教卡片列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp" />
+
+</LinearLayout>
