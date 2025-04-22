@@ -11,6 +11,7 @@ public class FindTutorInfo implements Serializable{
     private int salary;
     private String days;
     private String note;
+    private int userId;
 
     public FindTutorInfo(int id, String childName, String phone, String district, String address,
                          String subjects, int salary, String days, String note) {
@@ -46,6 +47,20 @@ public class FindTutorInfo implements Serializable{
         this.district = "";
         this.address = "";
     }
+    public FindTutorInfo(int id, int userId, String childName, String phone, String district, String address,
+                         String subjects, int salary, String days, String note) {
+        this.id = id;
+        this.userId = userId;
+        this.childName = childName;
+        this.phone = phone;
+        this.district = district;
+        this.address = address;
+        this.subjects = subjects;
+        this.salary = salary;
+        this.days = days;
+        this.note = note;
+    }
+
 
     public int getId() {
         return id;
@@ -82,4 +97,7 @@ public class FindTutorInfo implements Serializable{
     public String getNote() {
         return note;
     }
+
+    public int getUserId() { return userId; }
+
 }

@@ -45,6 +45,7 @@
         <activity android:name=".Detail.FindTutorDetailActivity" />
         <activity android:name=".publish.TutorActivity" />
         <activity android:name=".publish.FindTutorActivity" />
+        <activity android:name=".chat.ChatRoomActivity" />
 
 
 

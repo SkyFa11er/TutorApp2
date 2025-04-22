@@ -154,14 +154,14 @@ public class HomeFragment extends Fragment {
                         int id = obj.getInt("id");
                         String name = obj.optString("name", "學生");
                         List<String> subjects = Arrays.asList(obj.optString("subjects", "").split(","));
+                        int userId = obj.getInt("user_id");
                         String salary = obj.optString("salary", "");
                         String salaryNote = obj.optString("salary_note", "");
                         String intro = obj.optString("intro", "");
                         List<String> days = Arrays.asList(obj.optString("available_days", "").split(","));
                         String startTime = obj.optString("start_time", "");
                         String endTime = obj.optString("end_time", "");
-
-                        tutorList.add(new TutorInfo(id, name, subjects, salary, salaryNote, intro, days, startTime, endTime));
+                        tutorList.add(new TutorInfo( id,userId, name, subjects, salary, salaryNote, intro, days, startTime, endTime));
                     }
 
                     requireActivity().runOnUiThread(() -> {
@@ -198,13 +198,26 @@ public class HomeFragment extends Fragment {
                         JSONObject obj = array.getJSONObject(i);
                         int id = obj.getInt("id");
                         String name = obj.optString("child_name", "學員");
+                        int userId = obj.getInt("user_id");
                         String subjects = obj.optString("subjects", "");
                         int salary = obj.optInt("salary", 0);
                         String days = obj.optString("days", "");
                         String note = obj.optString("note", "");
                         String district = obj.optString("district", "");
                         Log.d("DEBUG_DISTRICT", "API 解析地區：" + district);
-                        findList.add(new FindTutorInfo(id, name, subjects, salary, days, note, "", district, ""));
+
+                        findList.add(new FindTutorInfo(
+                                id,
+                                userId,
+                                name,            // childName
+                                "",              // phone
+                                district,
+                                "",              // address
+                                subjects,
+                                salary,
+                                days,
+                                note
+                        ));
 
                     }
 

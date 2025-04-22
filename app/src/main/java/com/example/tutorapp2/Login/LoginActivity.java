@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject user = obj.getJSONObject("user");
                             String role = user.optString("role", "unknown");
                             String name = user.optString("name", "訪客");
+                            int id = user.getInt("id");
 
                             Log.d("LOGIN_DEBUG", "取得的 token: " + token);
                             Log.d("LOGIN_DEBUG", "使用者角色: " + role);
@@ -95,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .putString("token", token)
                                     .putString("role", role)
                                     .putString("name", name)
+                                    .putInt("userId", id)
                                     .apply();
 
                             Log.d("LOGIN_DEBUG", "token 和角色已成功儲存");
@@ -109,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } else {
                         runOnUiThread(() ->
-                                Toast.makeText(LoginActivity.this, "登入失敗：" + resBody, Toast.LENGTH_LONG).show());
+                                 Toast.makeText(LoginActivity.this, "登入失敗：" + resBody, Toast.LENGTH_LONG).show());
                     }
                 }
             });

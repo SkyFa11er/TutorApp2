@@ -13,7 +13,23 @@ public class TutorInfo implements Serializable{
     private List<String> availableDays;
     private String startTime;
     private String endTime;
+    private int userId;
 
+
+
+    public TutorInfo(int id, int userId, String name, List<String> subjects, String salary, String salaryNote,
+                     String intro, List<String> availableDays, String startTime, String endTime) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.subjects = subjects;
+        this.salary = salary;
+        this.salaryNote = salaryNote;
+        this.intro = intro;
+        this.availableDays = availableDays;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
     public TutorInfo(int id, String name, List<String> subjects, String salary, String salaryNote,
                      String intro, List<String> availableDays, String startTime, String endTime) {
         this.id = id;
@@ -26,6 +42,10 @@ public class TutorInfo implements Serializable{
         this.startTime = startTime;
         this.endTime = endTime;
     }
+
+
+
+
 
     public int getId() {
         return id;
@@ -62,4 +82,8 @@ public class TutorInfo implements Serializable{
     public String getEndTime() {
         return endTime;
     }
+
+    public int getUserId() { return userId; }
+
+
 }
