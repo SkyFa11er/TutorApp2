@@ -11,6 +11,19 @@ import com.example.tutorapp2.R;
 import com.example.tutorapp2.chat.ChatRoomActivity;
 import com.example.tutorapp2.model.FindTutorInfo;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class FindTutorDetailActivity extends AppCompatActivity {
 
     private TextView nameText, districtText, subjectsText, salaryText, daysText, noteText;
@@ -64,10 +77,55 @@ public class FindTutorDetailActivity extends AppCompatActivity {
             }
         });
 
-        btnRequestMatch.setOnClickListener(v ->
-                Toast.makeText(this, "點擊了申請配對", Toast.LENGTH_SHORT).show()
-        );
+        btnRequestMatch.setOnClickListener(v -> {
+            FindTutorInfo info = (FindTutorInfo) getIntent().getSerializableExtra("findTutorInfo");
 
+            if (info != null) {
+                String token = prefs.getString("token", "");
+                int toUserId = info.getUserId();
+
+                OkHttpClient client = new OkHttpClient();
+                JSONObject json = new JSONObject();
+                try {
+                    json.put("to_user", toUserId);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                RequestBody body = RequestBody.create(
+                        json.toString(),
+                        MediaType.parse("application/json")
+                );
+
+                Request request = new Request.Builder()
+                        .url("http://8.138.229.36:3000/api/matches")
+                        .addHeader("Authorization", "Bearer " + token)
+                        .post(body)
+                        .build();
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override public void onFailure(Call call, IOException e) {
+                        runOnUiThread(() ->
+                                Toast.makeText(FindTutorDetailActivity.this, "申請配對失敗", Toast.LENGTH_SHORT).show());
+                    }
+
+                    @Override public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            runOnUiThread(() ->
+                                    Toast.makeText(FindTutorDetailActivity.this, "配對申請已送出", Toast.LENGTH_SHORT).show());
+
+                            //發送系統訊息
+                            sendSystemMessage(toUserId, "📩 配對申請已送出，請等待對方確認。");
+
+                        } else {
+                            String err = response.body().string();
+                            runOnUiThread(() ->
+                                    Toast.makeText(FindTutorDetailActivity.this, "配對失敗：" + err, Toast.LENGTH_SHORT).show());
+                        }
+                    }
+                });
+            }
+        });
         // 顯示資料
         FindTutorInfo info = (FindTutorInfo) getIntent().getSerializableExtra("findTutorInfo");
 
@@ -81,4 +139,39 @@ public class FindTutorDetailActivity extends AppCompatActivity {
             noteText.setText("📝 家教內容：" + info.getNote());
         }
     }
+    private void sendSystemMessage(int receiverId, String message) {
+        SharedPreferences prefs = getSharedPreferences("TutorAppPrefs", MODE_PRIVATE);
+        String token = prefs.getString("token", "");
+
+        OkHttpClient client = new OkHttpClient();
+        JSONObject json = new JSONObject();
+        try {
+            json.put("receiver_id", receiverId);
+            json.put("content", message);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(
+                json.toString(),
+                MediaType.parse("application/json")
+        );
+
+        Request request = new Request.Builder()
+                .url("http://8.138.229.36:3000/api/messages/send")
+                .addHeader("Authorization", "Bearer " + token)
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override public void onFailure(Call call, IOException e) {
+                Log.e("SYS_MSG", "系統訊息發送失敗", e);
+            }
+
+            @Override public void onResponse(Call call, Response response) {
+                Log.d("SYS_MSG", "✅ 系統訊息已送出");
+            }
+        });
+    }
+
 }

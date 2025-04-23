@@ -234,8 +234,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-
-
     private void showFilterDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("進階篩選");

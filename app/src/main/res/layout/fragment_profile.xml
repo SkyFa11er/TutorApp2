@@ -60,7 +60,12 @@
             app:iconPadding="8dp"
             app:iconTint="@color/white"
             android:layout_marginBottom="12dp"/>
-
+        <Button
+            android:id="@+id/buttonMatchList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📩 配對通知"
+            android:layout_marginTop="12dp" />
         <!-- 登出按鈕 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogout"
@@ -71,6 +76,61 @@
             android:icon="@drawable/ic_baseline_logout_24"
             app:iconPadding="8dp"
             app:iconTint="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/matchInfoLayout"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="12dp"
+            android:background="#f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtMatchInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="配對資訊將顯示在此"
+                android:textSize="16sp"
+                android:textColor="#333" />
+            <TextView
+                android:id="@+id/txtMatchedPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📞 聯絡電話："
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:paddingTop="8dp" />
+
+            <TextView
+                android:id="@+id/txtMatchedDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📍 地區："
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:paddingTop="4dp" />
+            <TextView
+                android:id="@+id/txtMatchedAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🏠 詳細地址："
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:paddingTop="4dp"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/btnEndMatch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="❌ 結束配對"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#D32F2F"
+                android:textColor="@android:color/white"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>

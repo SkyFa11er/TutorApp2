@@ -68,8 +68,31 @@ public class ChatFragment extends Fragment {
                             String lastMessage = obj.optString("last_message", "");
                             String timestamp = obj.optString("timestamp", "");
 
+                            if (lastMessage.contains("\"type\":\"match_result\"")) {
+                                try {
+                                    JSONObject sysMsg = new JSONObject(lastMessage);
+                                    String status = sysMsg.optString("status");
+
+                                    if ("active".equals(status)) {
+                                        lastMessage = "🎉 配對成功通知，請開始聯繫！";
+                                    } else if ("rejected".equals(status)) {
+                                        lastMessage = "❌ 很抱歉，對方拒絕了配對申請。請尋找其他對象唷！";
+                                    } else if ("closed".equals(status)) {
+                                        lastMessage = "⚠️ 該配對已結束";
+                                    } else {
+                                        lastMessage = "📌 配對狀態更新通知";
+                                    }
+                                } catch (JSONException e) {
+                                    lastMessage = "📌 系統通知";
+                                }
+                            } else if (lastMessage.contains("\"type\":\"match_request\"")) {
+                                lastMessage = "📩 有人申請與你配對，請盡快處理～";
+                            }
+
+
                             chatList.add(new ChatItem(userId, name, lastMessage, timestamp));
                         }
+
 
                         requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
 
