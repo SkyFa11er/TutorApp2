@@ -9,7 +9,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tutorapp2.R;
 import com.example.tutorapp2.chat.ChatRoomActivity;
 import com.example.tutorapp2.model.TutorInfo;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class TutorDetailActivity extends AppCompatActivity {
 
@@ -64,9 +76,55 @@ public class TutorDetailActivity extends AppCompatActivity {
         });
 
 
-        btnRequestMatch.setOnClickListener(v ->
-                Toast.makeText(this, "點擊了申請配對", Toast.LENGTH_SHORT).show()
-        );
+        btnRequestMatch.setOnClickListener(v -> {
+            TutorInfo tutor = (TutorInfo) getIntent().getSerializableExtra("tutorInfo");
+
+            if (tutor != null) {
+                String token = prefs.getString("token", "");
+                int toUserId = tutor.getUserId();
+
+                OkHttpClient client = new OkHttpClient();
+                JSONObject json = new JSONObject();
+                try {
+                    json.put("to_user", toUserId);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                RequestBody body = RequestBody.create(
+                        json.toString(),
+                        MediaType.parse("application/json")
+                );
+
+                Request request = new Request.Builder()
+                        .url("http://8.138.229.36:3000/api/matches")
+                        .addHeader("Authorization", "Bearer " + token)
+                        .post(body)
+                        .build();
+
+                client.newCall(request).enqueue(new okhttp3.Callback() {
+                    @Override public void onFailure(Call call, IOException e) {
+                        runOnUiThread(() ->
+                                Toast.makeText(TutorDetailActivity.this, "申請配對失敗", Toast.LENGTH_SHORT).show());
+                    }
+
+                    @Override public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            runOnUiThread(() ->
+                                    Toast.makeText(TutorDetailActivity.this, "配對申請已送出", Toast.LENGTH_SHORT).show());
+
+                            // 發送系統訊息通知
+                            sendSystemMessage(toUserId, "📩 配對申請已送出，請等待對方確認。");
+                        } else {
+                            String err = response.body().string();
+                            runOnUiThread(() ->
+                                    Toast.makeText(TutorDetailActivity.this, "配對失敗：" + err, Toast.LENGTH_SHORT).show());
+                        }
+                    }
+                });
+            }
+        });
+
 
         TutorInfo tutor = (TutorInfo) getIntent().getSerializableExtra("tutorInfo");
 
@@ -84,4 +142,40 @@ public class TutorDetailActivity extends AppCompatActivity {
     private String listToString(List<String> list) {
         return list != null ? String.join("、", list) : "";
     }
+
+    private void sendSystemMessage(int receiverId, String message) {
+        SharedPreferences prefs = getSharedPreferences("TutorAppPrefs", MODE_PRIVATE);
+        String token = prefs.getString("token", "");
+
+        OkHttpClient client = new OkHttpClient();
+        JSONObject json = new JSONObject();
+        try {
+            json.put("receiver_id", receiverId);
+            json.put("content", message);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(
+                json.toString(),
+                MediaType.parse("application/json")
+        );
+
+        Request request = new Request.Builder()
+                .url("http://8.138.229.36:3000/api/messages/send")
+                .addHeader("Authorization", "Bearer " + token)
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override public void onFailure(Call call, IOException e) {
+                // 可以選擇不提示
+            }
+
+            @Override public void onResponse(Call call, Response response) {
+                // 可以加上 Log 記錄訊息發送成功
+            }
+        });
+    }
+
 }

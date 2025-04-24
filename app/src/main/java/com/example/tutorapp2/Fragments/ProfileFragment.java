@@ -199,17 +199,28 @@ public class ProfileFragment extends Fragment {
                                 txtMatchInfo.setText(info);
                                 btnEndMatch.setVisibility(View.VISIBLE);
 
-                                if ("parent".equals(role)) {
+                                // 根據對方的身份與是否有地址，判斷顯示內容
+                                if ("parent".equals(matchRole)) {
+                                    if (!"未提供".equals(matchAddress)) {
+                                        // 有地址 → 學生主動配對家長
+                                        txtMatchedDistrict.setText("📍 家長地區：" + matchDistrict);
+                                        txtMatchedAddress.setText("🏠 詳細地址：" + matchAddress);
+                                        txtMatchedDistrict.setVisibility(View.VISIBLE);
+                                        txtMatchedAddress.setVisibility(View.VISIBLE);
+                                        txtMatchedPhone.setVisibility(View.GONE);
+                                    } else {
+                                        // 無地址 → 家長主動配對學生
+                                        txtMatchedPhone.setText("📞 家長電話：" + matchPhone);
+                                        txtMatchedPhone.setVisibility(View.VISIBLE);
+                                        txtMatchedDistrict.setVisibility(View.GONE);
+                                        txtMatchedAddress.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    // 對方是學生 → 顯示學生電話
                                     txtMatchedPhone.setText("📞 學生電話：" + matchPhone);
                                     txtMatchedPhone.setVisibility(View.VISIBLE);
                                     txtMatchedDistrict.setVisibility(View.GONE);
                                     txtMatchedAddress.setVisibility(View.GONE);
-                                } else {
-                                    txtMatchedDistrict.setText("📍 家長地區：" + matchDistrict);
-                                    txtMatchedAddress.setText("🏠 詳細地址：" + matchAddress);
-                                    txtMatchedDistrict.setVisibility(View.VISIBLE);
-                                    txtMatchedAddress.setVisibility(View.VISIBLE);
-                                    txtMatchedPhone.setVisibility(View.GONE);
                                 }
                             });
                             break;
@@ -219,6 +230,7 @@ public class ProfileFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
+
         });
     }
 }
